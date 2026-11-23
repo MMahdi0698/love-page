@@ -1,6 +1,6 @@
 <div align="center">
 
-# 💌 Love Page · صفحه‌ی عاشقانه 💌
+# 💌 Love Page 💌
 
 ### Will you go on a date with me? 😍 · قرار بذاریم؟ 😍
 
