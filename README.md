@@ -2,7 +2,7 @@
 
 # 💌 Love Page 💌
 
-### Will you go on a date with me? 😍 · قرار بذاریم؟ 😍
+### Will you go on a date with me? 😍
 
 ### 👉 [**mmahdi0698.github.io/love-page**](https://mmahdi0698.github.io/love-page) 👈
 
