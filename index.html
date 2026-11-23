@@ -431,7 +431,23 @@
       </div>
     </section>
 
-    <!-- ============ صفحه ۲: انتخاب غذا ============ -->
+    <!-- ============ صفحه ۲: قرار چندمتونه؟ ============ -->
+    <section class="page" id="page-which">
+      <div class="card">
+        <div class="badge" aria-hidden="true"><svg viewBox="0 0 32 29"><defs><linearGradient id="bgw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a76"/><stop offset="1" stop-color="#d90f3c"/></linearGradient></defs><path fill="url(#bgw)" d="M23.6 0c-3.4 0-6.3 2.7-7.6 5.6C14.7 2.7 11.8 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.4 9.5 11.9 16 19.2 6.5-7.3 16-9.8 16-19.2C32 3.8 28.2 0 23.6 0z"/><ellipse cx="9" cy="7.2" rx="3.2" ry="2" fill="#fff" opacity=".4" transform="rotate(-35 9 7.2)"/></svg></div>
+
+        <h1>قرار چندمتونه؟ <span class="sticker" aria-hidden="true">🥰</span></h1>
+
+        <div class="options" id="date-options">
+          <button class="opt" type="button" data-value="first"><span class="emo" aria-hidden="true">😄</span>اول</button>
+          <button class="opt" type="button" data-value="second"><span class="emo" aria-hidden="true">😊</span>دوم</button>
+          <button class="opt" type="button" data-value="third"><span class="emo" aria-hidden="true">😎</span>سوم</button>
+          <button class="opt" type="button" data-value="fourth"><span class="emo" aria-hidden="true">😘</span>چهارم</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ صفحه‌ی غذا (وقتی «اول» انتخاب بشه) ============ -->
     <section class="page" id="page-food">
       <div class="card">
         <div class="badge" aria-hidden="true"><svg viewBox="0 0 32 29"><defs><linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a76"/><stop offset="1" stop-color="#d90f3c"/></linearGradient></defs><path fill="url(#bg2)" d="M23.6 0c-3.4 0-6.3 2.7-7.6 5.6C14.7 2.7 11.8 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.4 9.5 11.9 16 19.2 6.5-7.3 16-9.8 16-19.2C32 3.8 28.2 0 23.6 0z"/><ellipse cx="9" cy="7.2" rx="3.2" ry="2" fill="#fff" opacity=".4" transform="rotate(-35 9 7.2)"/></svg></div>
@@ -447,15 +463,17 @@
       </div>
     </section>
 
-    <!-- ============ صفحه ۳: (بعداً ساخته می‌شه) ============
-         قالب آماده برای کپی کردن:
-         <section class="page" id="page-2">
+    <!-- ============ جای خالی: صفحه‌ی «قرار دوم» (بعداً ساخته می‌شه) ============ -->
+    <!-- ============ جای خالی: صفحه‌ی «قرار سوم» (بعداً ساخته می‌شه) ============ -->
+    <!-- ============ جای خالی: صفحه‌ی «قرار چهارم» (بعداً ساخته می‌شه) ============
+         قالب آماده برای کپی کردن (برای هر کدوم یه id جدا بذار، مثلاً page-date-2):
+         <section class="page" id="page-date-2">
            <div class="card">
              <div class="badge" aria-hidden="true"><svg viewBox="0 0 32 29"><defs><linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a76"/><stop offset="1" stop-color="#d90f3c"/></linearGradient></defs><path fill="url(#bg3)" d="M23.6 0c-3.4 0-6.3 2.7-7.6 5.6C14.7 2.7 11.8 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.4 9.5 11.9 16 19.2 6.5-7.3 16-9.8 16-19.2C32 3.8 28.2 0 23.6 0z"/><ellipse cx="9" cy="7.2" rx="3.2" ry="2" fill="#fff" opacity=".4" transform="rotate(-35 9 7.2)"/></svg></div>
              ... محتوا ...
            </div>
          </section>
-         بعد از ساختن، id اون رو توی لیست FLOW پایین کد بین 'page-ask' و 'page-final' بذار.
+         بعد از ساختن، id اون رو توی DATE_PAGES پایین کد (جلوی second یا third یا fourth) بذار.
     -->
 
     <!-- ============ صفحه‌ی آخر ============ -->
@@ -773,13 +791,18 @@
     /* =====================================================
        رفتن بین صفحه‌ها
        ===================================================== */
-    // ترتیب صفحه‌ها. صفحه‌ی ۳ که ساخته شد، idش رو قبل از 'page-final' بذار:
-    //   ['page-ask', 'page-food', 'page-3', 'page-final']
-    const FLOW = ['page-ask', 'page-food', 'page-final'];
+    // مسیر بعد از «قرار چندمتونه؟»
+    // اول ← صفحه‌ی غذا. بقیه رو بعداً می‌سازیم؛ تا اون موقع می‌رن صفحه‌ی آخر.
+    // وقتی صفحه‌ی قرار دوم/سوم/چهارم ساخته شد، idش رو جای 'page-final' بذار.
+    const DATE_PAGES = {
+      first:  'page-food',
+      second: 'page-final',   // TODO: صفحه‌ی قرار دوم
+      third:  'page-final',   // TODO: صفحه‌ی قرار سوم
+      fourth: 'page-final'    // TODO: صفحه‌ی قرار چهارم
+    };
 
     // جواب‌های انتخاب‌شده (برای استفاده توی صفحه‌های بعدی)
     const choices = {};
-    let step = 0;
 
     function goTo(id) {
       const current = document.querySelector('.page.active');
@@ -791,12 +814,6 @@
         // یه انفجار قلب موقع ورود به هر صفحه
         setTimeout(() => safe(() => burst(innerWidth / 2, innerHeight / 2, 16, Math.min(260, innerWidth * .55))), 500);
       }, reduceMotion ? 0 : 450);
-    }
-
-    function nextPage() {
-      if (step >= FLOW.length - 1) return;
-      step++;
-      goTo(FLOW[step]);
     }
 
     /* =====================================================
@@ -865,7 +882,29 @@
     });
 
     /* =====================================================
-       صفحه‌ی دوم: انتخاب غذا
+       صفحه‌ی دوم: قرار چندمتونه؟
+       ===================================================== */
+    const dateBtns = [...document.querySelectorAll('#date-options .opt')];
+    let datePicked = false;
+
+    dateBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (datePicked) return;
+        datePicked = true;
+        choices.date = btn.dataset.value;
+        saveAnswer({ event: 'date', date: choices.date });
+
+        dateBtns.forEach((b) => { b.disabled = true; if (b !== btn) b.classList.add('dim'); });
+        btn.classList.add('selected');
+
+        const r = btn.getBoundingClientRect();
+        safe(() => burst(r.left + r.width / 2, r.top + r.height / 2, 14, Math.min(200, innerWidth * .45)));
+        setTimeout(() => goTo(DATE_PAGES[choices.date] || 'page-final'), 1000);
+      });
+    });
+
+    /* =====================================================
+       صفحه‌ی غذا (وقتی «اول» انتخاب شده)
        ===================================================== */
     const optBtns = [...document.querySelectorAll('#options .opt')];
     let picked = false;
@@ -875,14 +914,14 @@
         if (picked) return;
         picked = true;
         choices.food = btn.dataset.value;
-        saveAnswer({ event: 'food', food: choices.food });
+        saveAnswer({ event: 'food', food: choices.food, date: choices.date });
 
         optBtns.forEach((b) => { b.disabled = true; if (b !== btn) b.classList.add('dim'); });
         btn.classList.add('selected');
 
         const r = btn.getBoundingClientRect();
         safe(() => burst(r.left + r.width / 2, r.top + r.height / 2, 14, Math.min(200, innerWidth * .45)));
-        setTimeout(nextPage, 1000);
+        setTimeout(() => goTo('page-final'), 1000);
       });
     });
 
@@ -892,7 +931,7 @@
       noBtn.disabled = true;
       const r = yesBtn.getBoundingClientRect();
       safe(() => burst(r.left + r.width / 2, r.top + r.height / 2, 22, Math.min(240, innerWidth * .55)));
-      setTimeout(nextPage, reduceMotion ? 0 : 900);
+      setTimeout(() => goTo('page-which'), reduceMotion ? 0 : 900);
     });
   </script>
 </body>
